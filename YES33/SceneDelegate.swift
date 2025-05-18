@@ -9,17 +9,21 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    
     var window: UIWindow?
-
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UINavigationController(rootViewController: MainViewController())
-        window.makeKeyAndVisible()
+        let window = UIWindow(windowScene: windowScene)
+        
+        //navigationLink를 위한 루트뷰 선언하기. 없으면 네비게이션 링크 안 먹음
+        let rootVC = BottomTabBarController()
+        let navController = UINavigationController(rootViewController: rootVC)
+        window.rootViewController = navController
         
         self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
