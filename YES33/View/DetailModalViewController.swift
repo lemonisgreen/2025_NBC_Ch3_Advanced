@@ -18,7 +18,7 @@ class DetailModalViewController: UIViewController {
     let priceLabel = UILabel()
     let contentsLabel = UITextView()
     let cartButton = UIButton()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,11 +39,11 @@ class DetailModalViewController: UIViewController {
         }
         
         priceLabel.text = book.price.map { "도서정가: \($0)원" } ?? "가격 정보 없음"
-    
+        
         contentsLabel.text = book.contents
         
         guard let thumbnail = book.thumbnail,
-        let url = URL(string: thumbnail) else { return }
+              let url = URL(string: thumbnail) else { return }
         
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
@@ -85,8 +85,11 @@ class DetailModalViewController: UIViewController {
     
     @objc func cartButtonTapped() {
         CoreDataManager.shared.saveBookToBookCart(bookData: selectedBook!)
+        let alert = UIAlertController(title: "알림", message: "장바구니에 책이 담겼습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alert, animated: true)
     }
-
+    
     private func configureUI() {
         [
             titleLabel,
@@ -127,6 +130,6 @@ class DetailModalViewController: UIViewController {
             cartButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             cartButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             cartButton.heightAnchor.constraint(equalToConstant: 40)
-            ])
+        ])
     }
 }
