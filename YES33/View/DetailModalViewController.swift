@@ -11,6 +11,7 @@ import CoreData
 class DetailModalViewController: UIViewController {
     
     var selectedBook: Document?
+    var isFromCartView: Bool = false
     
     let titleLabel = UILabel()
     let authorsLabel = UILabel()
@@ -25,6 +26,12 @@ class DetailModalViewController: UIViewController {
         setupSelectedBookData()
         setupUI()
         configureUI()
+        
+        if isFromCartView {
+            cartButton.setTitle("이미 담긴 책", for: .normal)
+            cartButton.isEnabled = false
+            cartButton.isHidden = true
+        }
     }
     
     private func setupSelectedBookData() {
@@ -85,10 +92,12 @@ class DetailModalViewController: UIViewController {
     
     @objc func cartButtonTapped() {
         CoreDataManager.shared.saveBookToBookCart(bookData: selectedBook!)
-        let alert = UIAlertController(title: "알림", message: "장바구니에 책이 담겼습니다.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "확인", style: .default))
-        present(alert, animated: true)
-    }
+        let alert = UIAlertController(title: "저장 완료", message: "책이 장바구니에 담겼습니다.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }))
+            present(alert, animated: true)
+        }
     
     private func configureUI() {
         [

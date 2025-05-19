@@ -118,6 +118,16 @@ final class CoreDataManager {
             }
         }
         
-        
+    func deleteAllBookCartItems() {
+            let fetchRequest: NSFetchRequest<NSFetchRequestResult> = BookCart.fetchRequest()
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try context.execute(deleteRequest)
+                saveContext() // NSBatchDeleteRequest는 컨텍스트를 직접 업데이트하지 않을 수 있음
+            } catch {
+                print("CoreData Error: Failed to delete all BookCart items - \(error)")
+            }
+        }
+
         
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class BookCell: UICollectionViewCell {
     static let id = "BookCell"
-        
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -31,7 +31,7 @@ class BookCell: UICollectionViewCell {
     
     func configure(with book: Document) {
         guard let thumbnail = book.thumbnail,
-        let url = URL(string: thumbnail) else { return }
+              let url = URL(string: thumbnail) else { return }
         
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
@@ -43,6 +43,21 @@ class BookCell: UICollectionViewCell {
             }
         }
     }
+    
+    func configure(with recentlyViewedBook: RecentlyViewedBook) {
+        guard let thumbnail = recentlyViewedBook.thumbnail,
+              let url = URL(string: thumbnail) else { return }
+        
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.sync {
+                        self?.imageView.image = image
+                    }
+                }
+            }
+        }
+    }
+    
 }
-
 
