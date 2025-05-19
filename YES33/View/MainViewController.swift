@@ -36,15 +36,6 @@ class MainViewController: UIViewController {
             .map { MainViewModel.Input.result(keyword: $0) }
             .bind(to: viewModel.input)
             .disposed(by: disposeBag)
-        
-        //
-        //        viewModel.bookResultsSubject
-        //            .observe(on: MainScheduler.instance)
-        //            .subscribe(onNext: { [weak self] books in
-        //                self?.bookResults = books
-        //                self?.collectionView.reloadData()
-        //            })
-        //            .disposed(by: disposeBag) // ✅ 반드시
     }
     
     @objc func searchButtonTapped() {
@@ -165,7 +156,6 @@ class MainViewController: UIViewController {
             
         ])
     }
-    
 }
 
 extension MainViewController: UISearchBarDelegate {
@@ -173,7 +163,16 @@ extension MainViewController: UISearchBarDelegate {
 }
 
 extension MainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedBookData = bookResults[indexPath.item]
+        let detailModalVC = DetailModalViewController()
+        
+        detailModalVC.selectedBook = selectedBookData
+        
+        self.present(detailModalVC, animated: true, completion: nil)
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
@@ -185,7 +184,7 @@ extension MainViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.id, for: indexPath) as? BookCell else { return UICollectionViewCell() }
         
         let book = bookResults[indexPath.item]
-        cell.configure(with: book) // BookCell에 configure 메서드 구현 필요
+        cell.configure(with: book)
         
         return cell
     }

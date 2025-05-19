@@ -26,19 +26,14 @@ class MainViewModel {
     
     private let disposeBag = DisposeBag()
     
-    //let bookResultsSubject = BehaviorSubject(value: [Document]())
-    
     init() {
-        input.flatMapLatest { [weak self] inputAction -> Observable<Output> in // inputAction으로 변수명 변경 권장
-            guard let self = self else { return .empty() } // self가 nil이면 빈 Observable 반환
+        input.flatMapLatest { [weak self] inputAction -> Observable<Output> in
+            guard let self = self else { return .empty() }
             
             switch inputAction {
             case .result(let keyword):
-                // fetchBookResults 함수가 Observable<Output>을 반환하므로,
-                // 이를 직접 반환하여 flatMapLatest가 처리하도록 합니다.
-                // 로딩 상태를 먼저 방출하고 API 호출을 시작합니다.
                 return Observable.concat([
-                    self.fetchBookResults(keyword: keyword) // API 호출 결과를 Observable<Output>으로 받음
+                    self.fetchBookResults(keyword: keyword)
                 ])
             }
         }
@@ -59,17 +54,11 @@ class MainViewModel {
                 observer.onCompleted()
                 return Disposables.create()
             }
+            
             var request = URLRequest(url: url)
             request.allHTTPHeaderFields = ["Authorization": "KakaoAK 697fd675657f803525ec0123d2557bf3"]
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                
-//                guard let data = data else { /* ... */ return }
-//                if let jsonString = String(data: data, encoding: .utf8) {
-//                    print("--- Received API JSON Response ---")
-//                    print(jsonString)
-//                    print("-------------------------------")
-//                }
                 
                 if let error = error {
                     // 네트워크 에러 처리
