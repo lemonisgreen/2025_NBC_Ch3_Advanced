@@ -84,7 +84,7 @@ class DetailModalViewController: UIViewController {
     }
     
     @objc func cartButtonTapped() {
-        saveBookToBookCart
+        CoreDataManager.shared.saveBookToBookCart(bookData: selectedBook!)
     }
 
     private func configureUI() {
