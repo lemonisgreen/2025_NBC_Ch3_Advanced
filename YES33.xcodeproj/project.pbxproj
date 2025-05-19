@@ -11,10 +11,20 @@
 		F13F6F6E2DD582F50063C1E5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = F13F6F6D2DD582F50063C1E5 /* RxCocoa */; };
 		F13F6F722DD582F50063C1E5 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = F13F6F712DD582F50063C1E5 /* RxRelay */; };
 		F13F6F762DD582F50063C1E5 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F13F6F752DD582F50063C1E5 /* RxSwift */; };
+		F13F702F2DDA49720063C1E5 /* Books.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F13F702D2DDA49720063C1E5 /* Books.xcdatamodeld */; };
+		F13F70A72DDAC77F0063C1E5 /* BookCart+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13F70A32DDAC77F0063C1E5 /* BookCart+CoreDataClass.swift */; };
+		F13F70A82DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13F70A52DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataClass.swift */; };
+		F13F70A92DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13F70A62DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataProperties.swift */; };
+		F13F70AA2DDAC77F0063C1E5 /* BookCart+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13F70A42DDAC77F0063C1E5 /* BookCart+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F13F6EA62DD1F9E10063C1E5 /* YES33.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YES33.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F13F702E2DDA49720063C1E5 /* Books.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Books.xcdatamodel; sourceTree = "<group>"; };
+		F13F70A32DDAC77F0063C1E5 /* BookCart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookCart+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F13F70A42DDAC77F0063C1E5 /* BookCart+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookCart+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F13F70A52DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentlyViewedBook+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F13F70A62DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentlyViewedBook+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -56,6 +66,11 @@
 		F13F6E9D2DD1F9E10063C1E5 = {
 			isa = PBXGroup;
 			children = (
+				F13F70A32DDAC77F0063C1E5 /* BookCart+CoreDataClass.swift */,
+				F13F70A42DDAC77F0063C1E5 /* BookCart+CoreDataProperties.swift */,
+				F13F70A52DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataClass.swift */,
+				F13F70A62DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataProperties.swift */,
+				F13F702D2DDA49720063C1E5 /* Books.xcdatamodeld */,
 				F13F6EA82DD1F9E10063C1E5 /* YES33 */,
 				F13F6EA72DD1F9E10063C1E5 /* Products */,
 			);
@@ -151,6 +166,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F13F702F2DDA49720063C1E5 /* Books.xcdatamodeld in Sources */,
+				F13F70A72DDAC77F0063C1E5 /* BookCart+CoreDataClass.swift in Sources */,
+				F13F70A82DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataClass.swift in Sources */,
+				F13F70A92DDAC77F0063C1E5 /* RecentlyViewedBook+CoreDataProperties.swift in Sources */,
+				F13F70AA2DDAC77F0063C1E5 /* BookCart+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +414,19 @@
 			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		F13F702D2DDA49720063C1E5 /* Books.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F13F702E2DDA49720063C1E5 /* Books.xcdatamodel */,
+			);
+			currentVersion = F13F702E2DDA49720063C1E5 /* Books.xcdatamodel */;
+			path = Books.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F13F6E9E2DD1F9E10063C1E5 /* Project object */;
 }

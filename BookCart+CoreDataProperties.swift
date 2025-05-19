@@ -1,29 +1,32 @@
 //
-//  Cart+CoreDataProperties.swift
+//  BookCart+CoreDataProperties.swift
 //  YES33
 //
 //  Created by JIN LEE on 5/19/25.
+//
 //
 
 import Foundation
 import CoreData
 
+
 extension BookCart {
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<BookCart> {
         return NSFetchRequest<BookCart>(entityName: "BookCart")
     }
-    
+
+    @NSManaged public var title: String?
+    @NSManaged public var thumbnail: String?
+    @NSManaged public var price: NSNumber?
     @NSManaged public var authorsJsonString: String?
     @NSManaged public var contents: String?
-    @NSManaged public var price: NSNumber?
-    @NSManaged public var thumbnail: String?
-    @NSManaged public var title: String?
-    
+    @NSManaged public var isbn: String?
+
 }
 
 extension BookCart : Identifiable {
-    
+
 }
 
 extension BookCart {

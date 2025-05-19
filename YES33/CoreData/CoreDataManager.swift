@@ -80,7 +80,44 @@ final class CoreDataManager {
         }
         
         RecentlyViewedBookEntity.contents = bookData.contents
-    
+        
         saveContext()
     }
+    
+    func fetchAllBookCartItems() -> [BookCart] {
+        let request: NSFetchRequest<BookCart> = BookCart.fetchRequest()
+
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("CoreData: Failed to fetch BookCart items: \(error)")
+            return []
+        }
+    }
+
+    func fetchAllRecentlyViewedBooks(limit: Int? = nil) -> [RecentlyViewedBook] {
+            let request: NSFetchRequest<RecentlyViewedBook> = RecentlyViewedBook.fetchRequest()
+            
+            // (선택 사항) 정렬 조건 추가: 예) viewedDate 속성이 있다면 내림차순 정렬
+            // let sortDescriptor = NSSortDescriptor(key: "viewedDate", ascending: false)
+            // request.sortDescriptors = [sortDescriptor]
+            
+            // (선택 사항) 가져올 개수 제한
+            if let fetchLimit = limit {
+                request.fetchLimit = fetchLimit
+            }
+            
+            do {
+                return try context.fetch(request)
+            } catch {
+                print("CoreData: Failed to fetch RecentlyViewedBook items: \(error)")
+                return []
+            }
+        }
+        
+        
+        
 }

@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     let searchBar = UISearchBar()
     let searchButton = UIButton()
     let bookResultsTitle = UILabel()
+    let recentlyViewedBookTitle = UILabel()
     
     private var bookResults = [Document]()
     
@@ -95,6 +96,8 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
+        
+        recentlyViewedBookTitle.attributedText = NSAttributedString(string: "최근 본 책", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .bold)])
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -127,6 +130,7 @@ class MainViewController: UIViewController {
             bookResultsTitle,
             collectionView,
             searchButton,
+            recentlyViewedBookTitle,
             
         ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -144,6 +148,10 @@ class MainViewController: UIViewController {
             searchButton.topAnchor.constraint(equalTo: searchBookTitle.bottomAnchor, constant: 20),
             searchButton.leadingAnchor.constraint(equalTo: searchBar.trailingAnchor, constant: 8),
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            recentlyViewedBookTitle.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 20),
+            recentlyViewedBookTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
             
             
             bookResultsTitle.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 20),
